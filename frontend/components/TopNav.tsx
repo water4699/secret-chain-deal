@@ -1,7 +1,7 @@
 "use client";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { Shield, Wifi, WifiOff } from "lucide-react";
+import { Shield, Wifi } from "lucide-react";
 import { useChainId, useAccount } from "wagmi";
 
 const NETWORK_NAMES: Record<number, string> = {

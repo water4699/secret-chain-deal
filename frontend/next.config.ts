@@ -2,14 +2,10 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
-  // Silence monorepo root inference warning
-  outputFileTracingRoot: path.join(__dirname, ".."),
-  
-  // Allow WSL access via 0.0.0.0
+  // Disable optimizeCss to avoid critters dependency issues
   experimental: {
-    // Enable server hostname binding for WSL
+    optimizeCss: false,
   },
-  
   headers() {
     // Required by FHEVM: apply to ALL routes, not only '/'
     // so that scripts/wasm/static assets are also served with COOP/COEP
@@ -23,7 +19,6 @@ const nextConfig: NextConfig = {
       },
     ]);
   },
-  
   webpack: (config) => {
     // Shim RN-only storage required by @metamask/sdk via wagmi's MetaMask connector
     config.resolve = config.resolve || {};
