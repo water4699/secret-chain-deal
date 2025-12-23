@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 统一的柔和暖色调 */
+    --background: 30 25% 97%;
+    --foreground: 30 15% 20%;
+
+    --card: 30 20% 99%;
+    --card-foreground: 30 15% 20%;
+
+    --popover: 30 20% 99%;
+    --popover-foreground: 30 15% 20%;
+
+    /* 主色调 - 温暖的琥珀棕 */
+    --primary: 25 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 15% 94%;
+    --secondary-foreground: 30 15% 30%;
+
+    --muted: 30 12% 92%;
+    --muted-foreground: 30 10% 45%;
+
+    /* 强调色 - 深棕红 */
+    --accent: 15 60% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 15% 85%;
+    --input: 30 15% 85%;
+    --ring: 25 70% 50%;
+
+    --radius: 1rem;
+
+    /* 特殊颜色 - 封印红 */
+    --seal-red: 5 65% 45%;
+    --seal-dark: 5 70% 35%;
+    --gold: 40 75% 50%;
+    --parchment: 35 35% 93%;
+    --ink: 30 25% 15%;
+
+    /* 图表颜色 */
+    --chart-1: 25 70% 50%;
+    --chart-2: 15 60% 45%;
+    --chart-3: 35 65% 50%;
+    --chart-4: 45 55% 45%;
+    --chart-5: 20 50% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    @apply tracking-tight;
+  }
+}
+
+/* 动画 */
+@keyframes seal-break {
+  0% { transform: scale(1) rotate(0deg); opacity: 1; }
+  30% { transform: scale(1.15) rotate(8deg); }
+  60% { transform: scale(0.9) rotate(-5deg); opacity: 0.6; }
+  100% { transform: scale(0.7) rotate(180deg); opacity: 0; }
+}
+
+@keyframes document-reveal {
+  0% { 
+    transform: translateY(20px) scale(0.95); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0) scale(1); 
+    opacity: 1; 
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fade-up {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 15px hsl(5 65% 45% / 0.3); }
+  50% { box-shadow: 0 0 25px hsl(5 65% 45% / 0.5); }
+}
+
+.animate-seal-break {
+  animation: seal-break 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-document-reveal {
+  animation: document-reveal 0.5s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* 背景 */
+.bg-page {
+  background: linear-gradient(180deg, hsl(30 25% 97%), hsl(30 20% 95%));
+}
+
+.bg-parchment {
+  background: linear-gradient(135deg, hsl(35 35% 95%), hsl(35 30% 92%));
+}
+
+/* 玻璃效果 */
+.glass-effect {
+  background: hsl(30 20% 99% / 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 阴影 */
+.shadow-soft {
+  box-shadow: 0 4px 15px hsl(30 20% 70% / 0.15);
+}
+
+.shadow-card {
+  box-shadow: 0 6px 25px hsl(30 20% 60% / 0.12);
+}
+
+.shadow-seal {
+  box-shadow: 0 6px 20px hsl(5 65% 45% / 0.3);
+}
+
+/* 封印样式 */
+.wax-seal {
+  background: linear-gradient(145deg, hsl(5 60% 50%), hsl(5 70% 38%));
+  box-shadow: 
+    0 6px 20px hsl(5 65% 45% / 0.35),
+    inset 0 2px 4px hsl(0 0% 100% / 0.25),
+    inset 0 -2px 4px hsl(0 0% 0% / 0.15);
+}
+
+/* 装饰线 */
+.decorative-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(30 15% 80%), transparent);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+::selection {
+  background: hsl(var(--primary) / 0.15);
+  color: hsl(var(--primary));
+}
